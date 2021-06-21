@@ -87,3 +87,6 @@ to `http://127.0.0.1:5000/orders_status/`.
 ## Endpoints 
 `http://127.0.0.1:5000/orders_status/` Process orders status and returns final status
 
+## unittest
+python -m unittest tests/order_status_test.py
+

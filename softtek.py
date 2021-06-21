@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+import json
+from flask import Flask, request, Response
 
 app = Flask(__name__)
 
@@ -14,16 +15,16 @@ def orders_status():
     c = {}
     for order in orders:
         c.setdefault(order['order_number'], []).append(order['status'])
-    orders_status = [{'order_number': k, 'order_status': v} for k, v in c.items()]
-    print(orders_status)
+    orders_status = [{'order_number': k, 'order_status': v} for k, v in c.items()]    
     for x in orders_status:
         if 'PENDING' in x['order_status']:
             x['final_status'] = 'PENDING'
         elif 'SHIPPED' in x['order_status']:
             x['final_status'] = 'SHIPPED'
         else:
-            x['final_status'] = 'CANCELLED'
-    return jsonify(orders_status)
+            x['final_status'] = 'CANCELLED'    
+    return data, 200
+
 
 
 if __name__ == '__main__':
